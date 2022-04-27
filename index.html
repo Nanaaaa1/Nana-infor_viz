@@ -57,9 +57,22 @@
       </g>
   */
 
+   graphData.links.forEach(function(link){
+
+// initialize a new property on the node
+if (!link.source["linkCount"]) link.source["linkCount"] = 0; 
+if (!link.target["linkCount"]) link.target["linkCount"] = 0;
+
+// count it up
+link.source["linkCount"]++;
+link.target["linkCount"]++;    
+});
+
   var circles = textsAndNodes
     .append("circle")
-    .attr("r", 25)
+    .attr("r",function(d){
+     return d.linkCount ? (d.linkCount * 2) : 2; //<-- some function to determine radius
+  } )
     .attr("fill", "red");
 
   var texts = textsAndNodes.append("text").text(function(d) {
