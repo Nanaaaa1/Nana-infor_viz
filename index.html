@@ -9,11 +9,20 @@
   var height = svg.attr("height");
 
   var graphData = {
-    nodes: [{ name: "Richard Fox" }, { name: "Meryl Pastuch" }, { name: "Rosalia Larroque" }, { name: "Kerstin Belveal" }],
+    nodes: [{ name: "\Richard Fox" }, { name: "\Meryl Pastuch" }, { name: "\Rosalia Larroque" },
+     { name: "\Kerstin Belveal" }, { name: "\Lindsay Henion" }, { name: "\Jose Ringwald" }, { name: "\Dylan Ballard" }, { name: "\Agusta Sharp" },
+  { name: "\Glen Grant" }, { name: "\Tobi Gatlin" }],
     links: [
       { source: "Richard Fox", target: "Meryl Pastuch" },
       { source: "Meryl Pastuch", target: "Rosalia Larroque" },
-      { source: "Kerstin Belveal", target: "Rosalia Larroque" }
+      { source: "Kerstin Belveal", target: "Rosalia Larroque" },
+      { source: "Lindsay Henion", target: "Kerstin Belveal" },
+      { source: "Jose Ringwald", target: "Lindsay Henion" },
+      { source: "Dylan Ballard", target: "Jose Ringwald" },
+      { source: "Agusta Sharp", target: "Dylan Ballard" },
+      { source: "Glen Grant", target: "Agusta Sharp" },
+      { source: "Tobi Gatlin", target: "Glen Grant" },
+      { source: "Tobi Gatlin", target: "Richard Fox" }
 
     ]
   };
@@ -46,7 +55,10 @@
     .data(graphData.nodes)
     .enter()
     .append("g")
-    .call(drag);
+    .call(drag)
+    /*if it fails when you run then comment the attr under this out
+    and youll have the basic layout again
+    */
 
   /* <g>
         <g>
@@ -60,12 +72,12 @@
    graphData.links.forEach(function(link){
 
 // initialize a new property on the node
-if (!link.source["linkCount"]) link.source["linkCount"] = 0; 
+if (!link.source["linkCount"]) link.source["linkCount"] = 0;
 if (!link.target["linkCount"]) link.target["linkCount"] = 0;
 
 // count it up
 link.source["linkCount"]++;
-link.target["linkCount"]++;    
+link.target["linkCount"]++;
 });
 
   var circles = textsAndNodes
